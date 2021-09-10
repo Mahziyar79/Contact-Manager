@@ -1,38 +1,83 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navigation {
+  border-bottom: 2px solid rgb(145, 145, 145);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.name-input,
+.email-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  align-items: center;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+input {
+  width: 30%;
+  padding: 7px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+label {
+  margin-bottom: 3px;
+}
+.add_btn {
+  width: 5%;
+  padding: 7px;
+  background: cornflowerblue;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+img {
+  max-width: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 12px;
+}
+.contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.info-contact {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.info-contact p {
+  margin: 0;
+  padding: 3px 0;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.show-contacts {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 20px 0;
+	width: 50%;
+	border: 1px solid #ccc;
+	padding: 10px;
+	border-radius: 5px;
+}
+.main-contact {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.delete button {
+  border: none;
+  background: transparent;
+  font-size: 1.2em;
+  color: red;
+  cursor: pointer;
+}
+@media (max-width: 992px) {
+  button {
+    width: 35% !important;
   }
-  to {
-    transform: rotate(360deg);
+  input {
+    width: 65% !important;
+  }
+  .show-contacts{
+    width: 80%;
   }
 }
