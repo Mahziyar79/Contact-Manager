@@ -17,6 +17,7 @@ const AddContact = ({ changeContact }) => {
     changeContact(name, email);
     setName("");
     setEmail("");
+  
   };
 
   return (
