@@ -1,27 +1,18 @@
 import { FaTrash } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Contact from "./Contact";
 
-const Contacts = ({ contacts, onDelete }) => {
+const Contacts = ({ contacts, onDelete, match }) => {
+  const id = match.params.id;
   return (
     <div className="main-contact">
+      <div>
+        <Link to="/add-comment">
+          <button>Add New Comment</button>
+        </Link>
+      </div>
       {contacts.map((contact) => {
-        return (
-          <div key={contact.id} className="show-contacts">
-            <div className="contact">
-              <div className="img-contact">
-                <img alt="image_profile" src="./../profile.jpg" />
-              </div>
-              <div className="info-contact">
-                <p>{contact.name}</p>
-                <p>{contact.email}</p>
-              </div>
-            </div>
-            <div className="delete">
-              <button onClick={() => onDelete(contact.id)}>
-                <FaTrash />
-              </button>
-            </div>
-          </div>
-        );
+        return <Contact contact={contact} onDelete={onDelete} />;
       })}
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const AddContact = ({ changeContact }) => {
+const AddContact = ({ changeContact, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -17,7 +17,7 @@ const AddContact = ({ changeContact }) => {
     changeContact(name, email);
     setName("");
     setEmail("");
-  
+    history.push("/");
   };
 
   return (
@@ -41,7 +41,9 @@ const AddContact = ({ changeContact }) => {
           onChange={(e) => emailHandler(e)}
         ></input>
       </div>
-      <button className='add_btn' type="submit">Add</button>
+      <button className="add_btn" type="submit">
+        Add
+      </button>
     </form>
   );
 };
