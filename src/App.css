@@ -70,23 +70,32 @@ img {
   color: red;
   cursor: pointer;
 }
-li{
+li {
   list-style: none;
 }
-a{
+a {
   text-decoration: none;
 }
-.nav{
+.nav {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  border-bottom:2px solid #f3f3f3 ;
+  border-bottom: 2px solid #f3f3f3;
 }
 ul.list-nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  padding: 0;
+}
+ul.list-nav li {
+  padding: 0 20px;
+}
+.add_contact {
+  padding: 7px;
+  background: cornflowerblue;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 20px;
 }
 @media (max-width: 992px) {
   button {

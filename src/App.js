@@ -5,75 +5,74 @@ import Contacts from "./components/Contacts";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Layout from "./Layout/Layout";
 import ContactDetail from "./components/ContactDetail/ContactDetail";
+import NotFoundPage from "./pages/NotFoundPage";
+import http from "./services/httpService";
 
 function App() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    showLocal();
+    const getContacts = async () => {
+      const { data } = await http.get("/contacts");
+      setContacts(data);
+    };
+    try {
+      getContacts();
+    } catch (error) {}
   }, []);
 
-  useEffect(() => {
-    saveLocal();
-  }, [contacts]);
-
-  // save Item to LocalStorage
-  const saveLocal = () => {
-    if (localStorage.getItem("contacts") === null) {
-      localStorage.setItem("contacts", JSON.stringify([]));
-    } else {
-      localStorage.setItem("contacts", JSON.stringify(contacts));
-    }
-  };
-
-  // Show Item in LocalStorage
-  const showLocal = () => {
-    if (localStorage.getItem("contacts") === null) {
-      localStorage.setItem("contacts", JSON.stringify([]));
-    } else {
-      setContacts(JSON.parse(localStorage.getItem("contacts")));
-    }
-  };
-
   const changeContactHandler = (name, email) => {
-    console.log(name, email);
     const newContact = {
-      id: Math.floor(Math.random() * 1000),
+      // id: Math.floor(Math.random() * 1000),
       name: name,
       email: email,
     };
-    setContacts([...contacts, newContact]);
+    const postContacts = async () => {
+      await http.post("/contacts", newContact);
+      const { data } = await http.get("/contacts");
+      setContacts(data);
+    };
+    postContacts();
   };
 
   const onDeleteHandler = (id) => {
-    const items = contacts.filter((item) => item.id !== id);
-    setContacts(items);
+    const deleteContact = async () => {
+      await http.delete(`/contacts/${id}`);
+      const { data } = await http.get("/contacts");
+      setContacts(data);
+    };
+    try {
+      deleteContact();
+    } catch (error) {}
   };
 
   return (
-    
     <div className="App">
       <BrowserRouter>
         <Layout>
           <Switch>
-          <Route 
-            path='/user/:id'
-            component={ContactDetail}
+            <Route path="/user/:id" component={ContactDetail} />
+            <Route
+              path="/add-comment"
+              render={(props) => (
+                <AddContact changeContact={changeContactHandler} {...props} />
+              )}
             />
-            <Route 
-            path='/add-comment'
-            render={(props)=><AddContact changeContact={changeContactHandler} {...props}/>}
+            <Route
+              path="/"
+              exact
+              render={(props) => (
+                <Contacts
+                  contacts={contacts}
+                  onDelete={onDeleteHandler}
+                  {...props}
+                />
+              )}
             />
-            <Route 
-            path='/'
-            render={(props)=><Contacts contacts={contacts} onDelete={onDeleteHandler} {...props}/>}
-            />
+            <Route component={NotFoundPage} />
           </Switch>
         </Layout>
       </BrowserRouter>
-      {/* <Navigation /> */}
-      {/* <AddContact changeContact={changeContactHandler} /> */}
-      {/* <Contacts contacts={contacts} onDelete={onDeleteHandler} /> */}
     </div>
   );
 }

@@ -3,7 +3,7 @@ import { FaTrash } from "react-icons/fa";
 
 const Contact = ({ contact, onDelete }) => {
   return (
-    <div key={contact.id} className="show-contacts">
+    <div className="show-contacts">
       <div className="contact">
         <div className="img-contact">
           <img alt="image_profile" src="./../profile.jpg" />
