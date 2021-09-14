@@ -1,14 +1,19 @@
 import { useState } from "react";
 import http from "../services/httpService";
 
-const AddContact = ({ history }) => {
-  const [contact, setContact] = useState({ name: "", email: "" });
+const EditContact = ({ history, location, editHandler }) => {
+  const { contact } = location.state;
+
+  const [newContact, setNewContact] = useState({
+    name: contact.name,
+    email: contact.email,
+  });
 
   const nameHandler = (e) => {
-    setContact({ ...contact, name: e.target.value });
+    setNewContact({ ...newContact, name: e.target.value });
   };
   const emailHandler = (e) => {
-    setContact({ ...contact, email: e.target.value });
+    setNewContact({ ...newContact, email: e.target.value });
   };
 
   const submitHandler = async (e) => {
@@ -16,21 +21,21 @@ const AddContact = ({ history }) => {
       return alert("please Enter the name and email");
     e.preventDefault();
     try {
-      await http.post("/contacts", contact);
-      setContact({ name: "", email: "" });
+      await http.put(`/contacts/${contact.id}`, newContact);
+      setNewContact({ name: "", email: "" });
       history.push("/");
     } catch (error) {}
   };
 
   return (
     <form className="addform" onSubmit={(e) => submitHandler(e)}>
-      <h2>Add Contact</h2>
+      <h2>Update Contact</h2>
       <div className="name-input">
         <label>Name</label>
         <input
           type="text"
           placeholder="Name..."
-          value={contact.name}
+          value={newContact.name}
           onChange={(e) => nameHandler(e)}
         ></input>
       </div>
@@ -39,15 +44,15 @@ const AddContact = ({ history }) => {
         <input
           type="email"
           placeholder="Email..."
-          value={contact.email}
+          value={newContact.email}
           onChange={(e) => emailHandler(e)}
         ></input>
       </div>
       <button className="add_btn" type="submit">
-        Add
+        Update
       </button>
     </form>
   );
 };
 
-export default AddContact;
+export default EditContact;

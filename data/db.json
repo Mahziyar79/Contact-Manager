@@ -1,19 +1,14 @@
 {
   "contacts": [
     {
-      "id": 1,
-      "name": "Mahziyar",
-      "email": "mgillanpour79@gmail.com"
+      "name": "Mahziyar791",
+      "email": "mazi@gmail.com",
+      "id": 1
     },
     {
-      "name": "dsad",
-      "email": "dsad@dasd",
+      "name": "ali21",
+      "email": "ali@gmail.com",
       "id": 2
-    },
-    {
-      "name": "dsad",
-      "email": "dsad@das231",
-      "id": 3
     }
   ]
 }

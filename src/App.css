@@ -20,6 +20,9 @@ input {
 label {
   margin-bottom: 3px;
 }
+button{
+  cursor: pointer !important;
+}
 .add_btn {
   width: 5%;
   padding: 7px;
@@ -63,12 +66,24 @@ img {
   flex-direction: column;
   align-items: center;
 }
-.delete button {
+.btns{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.delete_btn {
   border: none;
   background: transparent;
   font-size: 1.2em;
   color: red;
+  margin-left: 10px;
   cursor: pointer;
+}
+.edit_btn {
+  padding: 4px 15px;
+  background: transparent;
+  border: 1px solid rgb(48, 167, 48);
+  border-radius: 5px;
 }
 li {
   list-style: none;
@@ -95,6 +110,11 @@ ul.list-nav li {
   color: #fff;
   border: 1px solid #ccc;
   border-radius: 4px;
+  margin-top: 20px;
+}
+.search-box input {
+  width: 100%;
+  border: 1px solid blueviolet;
   margin-top: 20px;
 }
 @media (max-width: 992px) {
